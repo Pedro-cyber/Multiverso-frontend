@@ -1,0 +1,63 @@
+<h1>Mi perfil</h1>
+<div class="layout">
+  <div class="container">
+    <h2>{{this.user.username}}</h2>
+    <img src="{{this.user.avatar}}" alt="Avatar de usuario">
+    <div class="stats">
+      <div>Partidas jugadas: {{this.playerEvents}}</div>
+      <div>Partidas creadas: {{this.createdEvents}}</div>
+    </div>
+  </div>
+  <form [formGroup]="profileForm" (ngSubmit)="updateProfile()">
+    <mat-form-field appearance="outline">
+      <mat-label for="favouritePlatform">Plataforma de juego favorita</mat-label>
+      <mat-select [formControl]="favouritePlatform" >
+        <mat-option *ngFor="let item of platformList" [value]="item">{{item}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label for="favouritePlatformUsername">Gamertag/ID</mat-label>
+      <input matInput type="text" name="favouritePlatformUsername" id="favouritePlatformUsername" [formControl]="favouritePlatformUsername" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label for="favouritesGenres">Géneros favoritos</mat-label>
+      <textarea matInput
+      cdkTextareaAutosize
+      #autosize="cdkTextareaAutosize"
+      cdkAutosizeMinRows="1"
+      cdkAutosizeMaxRows="5"
+      name="favouritesGenres" id="favouritesGenres" [formControl]="favouritesGenres">
+      </textarea>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label for="favouritesGames">Juegos favoritos</mat-label>
+      <textarea matInput
+      cdkTextareaAutosize
+      #autosize="cdkTextareaAutosize"
+      cdkAutosizeMinRows="1"
+      cdkAutosizeMaxRows="5"
+      name="favouritesGames" id="favouritesGames" [formControl]="favouritesGames">
+      </textarea>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label for="aboutMe">Sobre mí</mat-label>
+      <textarea matInput
+      cdkTextareaAutosize
+      #autosize="cdkTextareaAutosize"
+      cdkAutosizeMinRows="1"
+      cdkAutosizeMaxRows="5"
+      name="aboutMe" id="aboutMe" [formControl]="aboutMe">
+      </textarea>
+    </mat-form-field>
+    <mat-form-field *ngIf="this.userId" appearance="outline">
+      <mat-label for="avatar">Avatar URL</mat-label>
+      <input matInput type="text" name="avatar" id="avatar"  [formControl]="avatar" />
+    </mat-form-field>
+    <div>
+      <button mat-raised-button color="primary" *ngIf="this.userId"  type="submit">Actualizar perfil</button>
+    </div>
+    <div class="message">
+      {{this.message}}
+    </div>
+  </form>
+</div>

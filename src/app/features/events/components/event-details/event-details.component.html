@@ -1,0 +1,53 @@
+<h1>{{this.event.title}}</h1>
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<div *ngIf="!isLoading" class="container">
+  <img class="bg" src={{this.event.image}} alt="Imagen del juego">
+  <div class="container-right">
+    <h2>{{this.event.game}}</h2>
+    <table>
+      <tr>
+        <th>Género</th>
+        <td>{{this.event.genre}}</td>
+      </tr>
+      <tr>
+        <th>Plataforma</th>
+        <td>{{this.event.platform}}</td>
+      </tr>
+      <tr *ngIf="userIsAuthenticated">
+        <th>Descripción</th>
+        <td>{{this.event.description}}</td>
+      </tr>
+      <tr *ngIf="userIsAuthenticated">
+        <th>Datos de conexión</th>
+        <td>{{this.event.connectionData}}</td>
+      </tr>
+      <tr>
+        <th>Número de jugadores</th>
+        <td>{{this.event.numberPlayersMax}}</td>
+      </tr>
+      <tr>
+        <th>Fecha</th>
+        <td>{{this.event.date}}</td>
+      </tr>
+      <tr *ngIf="userIsAuthenticated">
+        <th>Creador</th>
+        <td>{{this.event.creator}}</td>
+      </tr>
+    </table>
+    <div class="message" *ngIf="!userIsAuthenticated">Accede para ver toda la información de la partida y apuntarte</div>
+    <button mat-raised-button color="primary" *ngIf="userIsAuthenticated && !isSignedUp && !eventComplete" (click)="join()">Unirse</button>
+    <div class="message">{{this.message}}</div>
+  </div>
+</div>
+<div class="container-players" *ngIf="!isLoading && userIsAuthenticated">
+  <div class="players" >
+    <h3>Jugadores en la partida ({{this.count}})</h3>
+    <ul *ngFor="let player of this.playerCompleteInfo">
+      <div class="user">
+      <img src={{player.avatar}} alt="Player avatar">
+      <li (click)="profile(player.username)">{{player.username}}</li>
+      </div>
+    </ul>
+  </div>
+  <app-chat class="chat" [eventId]="eventId" [userId]="userId" [isSignedUp]="isSignedUp"></app-chat>
+</div>

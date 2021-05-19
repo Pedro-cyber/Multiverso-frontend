@@ -1,0 +1,115 @@
+<h1>Partidas</h1>
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<div *ngIf="!isLoading" class="main-container">
+  <div class="container-right">
+    <mat-accordion>
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+          <mat-icon class="filter-icon">filter_list</mat-icon>
+          </mat-panel-title>
+          <mat-panel-description>
+          Filtra por juego, plataforma o género
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <form>
+          <mat-form-field>
+            <input matInput type="text" name="searchGame" [(ngModel)]="searchGame" (keyup)="search()" placeholder="Busca tu juego"/>
+          </mat-form-field>
+          <mat-form-field>
+            <input  matInput type="text" name="searchPlatform" [formControl]="searchPlatform" (input)="search()" [matAutocomplete]="auto" placeholder="Elige tu plataforma"/>
+            <mat-autocomplete #auto="matAutocomplete">
+              <mat-option *ngFor="let option of filteredPlatformOptions | async" (click)="search()" [value]="option">{{option}}</mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="text" name="searchGenre" [formControl]="searchGenre" (keyup)="search()" [matAutocomplete]="autogenre"  placeholder="Elige tu género"/>
+            <mat-autocomplete #autogenre="matAutocomplete">
+              <mat-option *ngFor="let option of filteredGenreOptions | async" (click)="search()" [value]="option">{{option}}</mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </form>
+      </mat-expansion-panel>
+    </mat-accordion>
+    <mat-button-toggle-group value="cards">
+      <mat-button-toggle value="cards" (click)="toggleCards()"><mat-icon >dashboard</mat-icon></mat-button-toggle>
+      <mat-button-toggle value="list" (click)="toggleList()"><mat-icon >list</mat-icon></mat-button-toggle>
+    </mat-button-toggle-group>
+    <table id="list">
+      <tr>
+        <th>Juego</th>
+        <th>Partida</th>
+        <th>Plataforma</th>
+        <th>Fecha</th>
+        <th></th>
+      </tr>
+      <tr *ngFor="let item of events">
+        <td>{{item.game}}</td>
+        <td>{{item.title}}</td>
+        <td>{{item.platform}}</td>
+        <td>{{item.date}}</td>
+        <td><button mat-raised-button color="primary" *ngIf="item.players.length < item.numberPlayersMax" (click)="eventDetails(item.id)">Jugar</button>
+          <button mat-raised-button color="accent" class="disabled" *ngIf="item.players.length == item.numberPlayersMax">Cerrado</button>  </td>
+      </tr>
+    </table>
+    <div id="cards" class="container">
+      <div *ngFor="let item of events">
+        <mat-card class="card">
+          <mat-card-header>
+            <mat-card-title>{{item.title}}</mat-card-title>
+            <mat-card-subtitle>{{item.game}}</mat-card-subtitle>
+          </mat-card-header>
+          <img mat-card-image src={{item.image}} alt="Imagen del juego">
+          <mat-card-content>
+            <div class="section">
+              <mat-icon>monitor</mat-icon>
+              <div>{{item.platform}}</div>
+            </div>
+            <div class="section">
+              <mat-icon>event</mat-icon>
+              <div>{{item.date}}</div>
+            </div>
+            <div class="section">
+              <mat-icon>people</mat-icon>
+              <div>{{item.numberPlayersMax}}</div>
+            </div>
+            <button mat-raised-button color="primary" *ngIf="item.players.length < item.numberPlayersMax" (click)="eventDetails(item.id)">Jugar</button>
+            <button mat-raised-button color="accent" class="disabled" *ngIf="item.players.length == item.numberPlayersMax">Cerrado</button>
+          </mat-card-content>
+        </mat-card>
+    </div>
+  </div>
+  <mat-paginator [length]="totalEvents" [pageSize]="eventsPerPage" [pageSizeOptions]="pageSizeOptions" (page)="onChangedPage($event)" *ngIf="events.length > 0"></mat-paginator>
+</div>
+<div>
+  <h2>Partidas destacadas</h2>
+  <div class="container">
+    <div class="highlights" *ngFor="let event of popularEvents">
+      <mat-card class="card">
+        <mat-card-header>
+          <mat-icon>star</mat-icon>
+          <mat-card-title>{{event.title}}</mat-card-title>
+          <mat-card-subtitle>{{event.game}}</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image src={{event.image}} alt="Imagen del juego">
+        <mat-card-content>
+          <div class="section">
+            <mat-icon>monitor</mat-icon>
+            <div>{{event.platform}}</div>
+          </div>
+          <div class="section">
+            <mat-icon>event</mat-icon>
+            <div>{{event.date}}</div>
+          </div>
+          <div class="section">
+            <mat-icon>people</mat-icon>
+            <div>{{event.numberPlayersMax}}</div>
+          </div>
+          <button mat-raised-button color="primary" *ngIf="event.players.length < event.numberPlayersMax" (click)="eventDetails(event._id)">Jugar</button>
+          <button mat-raised-button color="accent" class="disabled" *ngIf="event.players.length == event.numberPlayersMax">Cerrado</button>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>
+

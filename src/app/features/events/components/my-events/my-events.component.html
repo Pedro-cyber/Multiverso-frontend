@@ -1,0 +1,99 @@
+<h1>Mis partidas</h1>
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<div *ngIf="!isLoading">
+  <table>
+    <tr>
+      <th>Juego</th>
+      <th>Partida</th>
+      <th>Plataforma</th>
+      <th>Fecha</th>
+      <th></th>
+      <th></th>
+    </tr>
+    <tr *ngFor="let item of playerEvents">
+      <td>{{item.game}}</td>
+      <td>{{item.title}}</td>
+      <td>{{item.platform}}</td>
+      <td>{{item.date}}</td>
+      <td><button mat-raised-button color="primary" (click)="eventDetails(item._id)">Detalles</button></td>
+      <td><button mat-raised-button color="accent" class="cancel" *ngIf="item.creator !== this.userId" (click)="cancelParticipation(item._id, item.players)">Cancelar</button></td>
+    </tr>
+  </table>
+  <div class="container">
+    <div *ngFor="let item of playerEvents">
+      <mat-card class="card">
+        <mat-card-header>
+          <mat-card-title>{{item.title}}</mat-card-title>
+          <mat-card-subtitle>{{item.game}}</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image src={{item.image}} alt="Imagen del juego">
+        <mat-card-content>
+          <div class="section">
+            <mat-icon>monitor</mat-icon>
+            <div>{{item.platform}}</div>
+          </div>
+          <div class="section">
+            <mat-icon>event</mat-icon>
+            <div>{{item.date}}</div>
+          </div>
+          <div class="section">
+            <mat-icon>people</mat-icon>
+            <div>{{item.numberPlayersMax}}</div>
+          </div>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="primary" (click)="eventDetails(item._id)">Detalles</button>
+          <button mat-raised-button color="accent"  *ngIf="item.creator !== this.userId" (click)="cancelParticipation(item._id, item.players)">Cancelar</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+  <h2>Partidas creadas por mí</h2>
+  <table>
+    <tr>
+      <th>Juego</th>
+      <th>Partida</th>
+      <th>Plataforma</th>
+      <th>Fecha</th>
+      <th></th>
+      <th></th>
+    </tr>
+    <tr *ngFor="let item of createdEvents">
+      <td>{{item.game}}</td>
+      <td>{{item.title}}</td>
+      <td>{{item.platform}}</td>
+      <td>{{item.date}}</td>
+      <td><button  mat-raised-button color="primary" (click)="editEvent(item._id)">Editar</button></td>
+      <td><button mat-raised-button class="cancel" color="accent" (click)="deleteEvent(item._id)">Eliminar</button></td>
+    </tr>
+  </table>
+  <div class="container">
+    <div *ngFor="let item of createdEvents">
+      <mat-card class="card">
+        <mat-card-header>
+          <mat-card-title>{{item.title}}</mat-card-title>
+          <mat-card-subtitle>{{item.game}}</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image src={{item.image}} alt="Imagen del juego">
+        <mat-card-content>
+          <div class="section">
+            <mat-icon>monitor</mat-icon>
+            <div>{{item.platform}}</div>
+          </div>
+          <div class="section">
+            <mat-icon>event</mat-icon>
+            <div>{{item.date}}</div>
+          </div>
+          <div class="section">
+            <mat-icon>people</mat-icon>
+            <div>{{item.numberPlayersMax}}</div>
+          </div>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="primary" (click)="editEvent(item._id)">Editar</button>
+          <button mat-raised-button color="accent" (click)="deleteEvent(item._id)">Eliminar</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>

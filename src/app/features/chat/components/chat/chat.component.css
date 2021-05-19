@@ -1,0 +1,101 @@
+h3 {
+  padding-top: 0.5em;
+  color: var(--main-bg-color);
+  font-size: 1.2em;
+  text-align: center;
+}
+
+mat-icon {
+  color: var(--main-bg-color);
+  padding-right: 0.5em;
+  padding-top: 0.6em;
+  font-size: 1.8em;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+button {
+  width: 100%;
+}
+
+.chat {
+  height: 23em;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  width: 25em;
+}
+
+.chat {
+  scrollbar-width: thin;
+  scrollbar-color: var(--main-bg-color) var(--secondary-bg-color);
+}
+
+*::-webkit-scrollbar {
+  width: 11px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--secondary-bg-color);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--main-bg-color) ;
+  border-radius: 20px;
+  border: 3px solid var(--secondary-bg-color);
+}
+
+.chat-container {
+  margin: 1em;
+  padding-bottom: 5em;
+}
+
+.message-container {
+  margin: 0.7em;
+}
+
+.message {
+  padding: 0.5em;
+  background-color: var(--main-bg-color);
+  color: white;
+  width: fit-content;
+  border-radius: 0 15px 15px 15px ;
+}
+
+.message-user {
+  padding: 0.5em;
+  background-color: var(--secondary-bg-color);
+  color: white;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: 0.5em;
+  border-radius: 15px 0 15px 15px ;
+}
+
+.message-title {
+  font-size: 0.9em;
+  color: gray;
+}
+
+.message-title-user {
+  margin-left: auto;
+  margin-right: 0.5em;
+  width: fit-content;
+  font-size: 0.9em;
+  color: gray;
+}
+
+.chat-title {
+  display: flex;
+  justify-content: center;
+}
+
+@media screen and (min-width: 700px) {
+
+  h3 {
+  font-size: 1.7em;
+  }
+}
+
+

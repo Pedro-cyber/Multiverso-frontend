@@ -1,0 +1,95 @@
+h1 {
+  text-align: center;
+  font-family: var(--font-family-heading);
+  font-size: 1.4em;
+  margin: 1em 0 1em 0em;
+  color: var(--main-bg-color);
+  text-transform: uppercase;
+}
+
+h2 {
+  color: var(--secondary-bg-color);
+}
+
+form {
+  margin: 0 auto;
+  width: 14em;
+  padding-bottom: 5em;
+}
+
+button {
+  display: block;
+  margin: auto;
+}
+
+img {
+  width: 14em;
+}
+
+input:disabled, textarea:disabled {
+  color: black ;
+}
+
+mat-label {
+  font-size: 1.3em;
+}
+
+.container {
+  margin: 0.5em;
+  text-align: center;
+}
+
+.stats {
+  padding: 1em 0 1em 0;
+}
+
+.message {
+  color: var(--secondary-bg-color);
+  text-align: center;
+  padding-top: 1em;
+}
+
+::ng-deep .mat-select-value-text {
+  color: black !important;
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline  {
+  color: var(--secondary-bg-color) !important;
+}
+
+::ng-deep .mat-form-field-label {
+  color: var(--main-bg-color) !important;
+}
+
+@media screen and (min-width: 700px) {
+
+  h1 {
+    margin-left: 0;
+  }
+
+  img {
+    width: 18em;
+  }
+
+  .mat-form-field, form {
+    width: 20em;
+  }
+
+}
+
+@media screen and (min-width: 1024px) {
+
+  h1 {
+    font-size: 1.9em;
+  }
+
+  form {
+    margin: 0 0 0 5em;
+  }
+
+  .layout {
+    display: flex;
+    justify-content: center;
+  }
+
+}

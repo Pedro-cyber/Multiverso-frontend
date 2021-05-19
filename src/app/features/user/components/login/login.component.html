@@ -1,0 +1,27 @@
+<h1>Acceso</h1>
+<form [formGroup]="loginForm" (ngSubmit)="login()">
+  <mat-form-field  appearance="outline">
+    <mat-label for="email">Email</mat-label>
+    <input matInput type="email" name="email" id="email" required [formControl]="email" />
+    <mat-error *ngIf="email.touched && email.errors">
+      <mat-error *ngIf="email.errors.required">El email es obligatorio</mat-error>
+      <mat-error *ngIf="email.errors.pattern">
+        Por favor, introduce un email válido</mat-error>
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label for="password">Contraseña</mat-label>
+    <input matInput type="password" name="password" id="password" required [formControl]="password"/>
+    <mat-error *ngIf="password.touched && password.errors">
+      <mat-error  *ngIf="password.errors.required">
+        La contraseña es obligatoria
+      </mat-error >
+      <mat-error  *ngIf="password.errors.minlength">
+        La contraseña debe tener 8 caracteres como mínimo
+      </mat-error >
+    </mat-error >
+  </mat-form-field>
+  <div>
+    <button mat-raised-button color="primary" type="submit" [disabled]="!loginForm.valid">Acceder</button>
+  </div>
+</form>

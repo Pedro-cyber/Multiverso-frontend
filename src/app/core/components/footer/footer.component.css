@@ -1,0 +1,13 @@
+footer {
+  background-color: var(--main-bg-color);
+  width: 100%;
+  padding: 1em 0 1em 0;
+
+}
+
+p {
+  color: white;
+  text-align: center;
+  font-family: var(--font-family-heading);
+  margin: 0;
+}

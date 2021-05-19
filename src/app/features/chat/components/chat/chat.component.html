@@ -1,0 +1,26 @@
+<div class="chat-container" *ngIf="isSignedUp">
+  <div class="chat-title">
+    <mat-icon>chat</mat-icon>
+  <h3>Chat</h3>
+  </div>
+  <div class="chat">
+    <div  *ngFor="let item of chats ">
+      <div class="message-container">
+        <div [ngClass]="{'message-title-user': item.username == username, 'message-title' : item.username != username }">{{item.username}} {{item.date}}</div>
+        <div [ngClass]="{'message-user': item.username == username, 'message' : item.username != username }"> {{item.message}}</div>
+      </div>
+    </div>
+  </div>
+  <form  [formGroup]="chatForm" (ngSubmit)="sendMessage()">
+    <mat-form-field  appearance="legacy">
+      <textarea matInput
+      cdkTextareaAutosize
+      #autosize="cdkTextareaAutosize"
+      cdkAutosizeMinRows="1"
+      cdkAutosizeMaxRows="5" name="message" id="message" required [formControl]="message"></textarea>
+    </mat-form-field>
+    <div>
+      <button type="submit" mat-raised-button color="primary"[disabled]="!chatForm.valid">Enviar</button>
+    </div>
+  </form>
+</div>

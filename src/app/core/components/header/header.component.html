@@ -1,0 +1,107 @@
+<header>
+  <nav class="menu-desktop">
+    <h1>MULTIVERSO/</h1>
+    <ul *ngIf="userIsAuthenticated">
+      <li>
+        <div class="section">
+          <mat-icon>sports_esports</mat-icon>
+          <a routerLink="/">Partidas</a>
+        </div>
+      </li>
+      <li>
+        <div class="section">
+          <mat-icon>add_circle_outline</mat-icon>
+          <a routerLink="/newevent">Nueva partida</a>
+        </div>
+      </li>
+      <li>
+        <div class="section">
+          <mat-icon>emoji_events</mat-icon>
+          <a routerLink="/myevents">Mis partidas</a>
+        </div>
+      </li>
+      <li>
+        <div class="section">
+          <mat-icon>person</mat-icon>
+          <a routerLink="profile">Mi perfil</a>
+        </div>
+      </li>
+      </ul>
+      <ul *ngIf="!userIsAuthenticated">
+        <li>
+          <div class="section">
+            <mat-icon>sports_esports</mat-icon>
+            <a routerLink="/">Partidas</a>
+          </div>
+        </li>
+        <li>
+          <div class="section">
+            <mat-icon>login</mat-icon>
+            <a routerLink="/login">Acceso</a>
+          </div>
+        </li>
+        <li>
+          <div class="section">
+            <mat-icon>person_add</mat-icon>
+            <a routerLink="/signup">Registro</a>
+          </div>
+        </li>
+      </ul>
+  </nav>
+
+  <h1 class="logo-mobile">MULTIVERSO/</h1>
+  <nav class="menu-mobile">
+    <ul *ngIf="userIsAuthenticated">
+      <li>
+        <div class="section">
+          <mat-icon>sports_esports</mat-icon>
+          <a routerLink="/">Partidas</a>
+        </div>
+      </li>
+      <li>
+        <div class="section">
+          <mat-icon>add_circle_outline</mat-icon>
+          <a routerLink="/newevent">Nueva partida</a>
+        </div>
+      </li>
+    </ul>
+    <ul *ngIf="userIsAuthenticated">
+      <li>
+        <div class="section">
+          <mat-icon>emoji_events</mat-icon>
+          <a routerLink="/myevents">Mis partidas</a>
+        </div>
+      </li>
+      <li>
+        <div class="section">
+          <mat-icon>person</mat-icon>
+          <a routerLink="profile">Mi perfil</a>
+        </div>
+      </li>
+    </ul>
+    <ul *ngIf="!userIsAuthenticated">
+      <li>
+        <div class="section">
+            <mat-icon>sports_esports</mat-icon>
+            <a routerLink="/">Partidas</a>
+        </div>
+      </li>
+      <li>
+        <div class="section">
+          <mat-icon>login</mat-icon>
+          <a routerLink="/login">Acceso</a>
+        </div>
+      </li>
+      <li>
+        <div class="section">
+          <mat-icon>person_add</mat-icon>
+          <a routerLink="/signup">Registro</a>
+        </div>
+      </li>
+    </ul>
+  </nav>
+  <div class="container" *ngIf="userIsAuthenticated">
+    <div class="welcome">Bienvenido {{this.username}}</div>
+    <div class="logout" (click)="logout()"><mat-icon>logout</mat-icon>Salir</div>
+  </div>
+</header>

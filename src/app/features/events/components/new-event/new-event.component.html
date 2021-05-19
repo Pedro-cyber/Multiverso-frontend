@@ -1,0 +1,79 @@
+<h1 *ngIf="!editMode">Nueva partida</h1>
+<h1 *ngIf="editMode">Editar partida</h1>
+<form  [formGroup]="newEventForm" (ngSubmit)="newEventOrUpdate()">
+  <mat-form-field  appearance="outline">
+    <mat-label for="title">Nombre de la partida</mat-label>
+    <input matInput type="text" name="title" id="title" required [formControl]="title" />
+    <mat-error *ngIf="title.touched && title.errors">
+      <mat-error  *ngIf="title.errors.required">El nombre de la partida es obligatoria</mat-error>
+      <mat-error  *ngIf="title.errors.minlength || title.errors.maxlength">
+        El nombre de la partida debe tener entre 5 y 34 caracteres
+      </mat-error>
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field  appearance="outline">
+    <mat-label for="game">Juego</mat-label>
+    <input matInput type="text" name="game" id="game" required [formControl]="game" />
+    <mat-error *ngIf="game.touched && game.errors">
+      <mat-error *ngIf="game.errors.required">El juego es obligatorio</mat-error>
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field  appearance="outline">
+    <mat-label for="platform">Plataforma</mat-label>
+    <mat-select [formControl]="platform" required >
+      <mat-option value="PC">PC</mat-option>
+      <mat-option value="Playstation">Playstation</mat-option>
+      <mat-option value="Xbox">Xbox</mat-option>
+      <mat-option value="Nintendo">Nintendo</mat-option>
+      <mat-option value="Crossplay">Crossplay</mat-option>
+      <mat-option value="Android">Android</mat-option>
+      <mat-option value="iOS">iOS</mat-option>
+    </mat-select>
+    <mat-error *ngIf="platform.touched && platform.errors">
+      <mat-error *ngIf="platform.errors.required">La plataforma es obligatoria</mat-error>
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field  appearance="outline">
+    <mat-label  for="description">Descripción</mat-label>
+    <textarea cdkTextareaAutosize
+    #autosize="cdkTextareaAutosize"
+    cdkAutosizeMinRows="1"
+    cdkAutosizeMaxRows="5"
+    matInput name="description" id="description" [formControl]="description"></textarea>
+  </mat-form-field>
+  <mat-form-field  appearance="outline">
+    <mat-label for="connectionData">Datos de la conexión</mat-label>
+    <textarea cdkTextareaAutosize
+    #autosize="cdkTextareaAutosize"
+    cdkAutosizeMinRows="1"
+    cdkAutosizeMaxRows="5"
+    matInput name="connectionData" id="connectionData" [formControl]="connectionData"></textarea>
+  </mat-form-field>
+  <mat-form-field  appearance="outline">
+    <mat-label for="numberPlayersMax">Número de jugadores</mat-label>
+    <input matInput type="number" name="numberPlayersMax" id="numberPlayersMax" required [formControl]="numberPlayersMax" />
+    <mat-error *ngIf="numberPlayersMax.touched && numberPlayersMax.errors">
+      <mat-error *ngIf="numberPlayersMax.errors.required">El número de jugadores es obligatorio</mat-error>
+      <mat-error *ngIf="numberPlayersMax.errors.min || numberPlayersMax.errors.max">
+        El número de jugadores debe estar entre 2 y 100
+      </mat-error>
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field  appearance="outline">
+    <mat-label for="date">Fecha y hora</mat-label>
+    <input matInput [ngxMatDatetimePicker]="picker" name="date" id="date" [formControl]="date" required placeholder="Selecciona fecha y hora" />
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <ngx-mat-datetime-picker #picker >
+      <ng-template>
+        <span>OK</span>
+      </ng-template>
+    </ngx-mat-datetime-picker>
+    <mat-error *ngIf="date.touched && date.errors">
+      <mat-error *ngIf="date.errors.required">La fecha y hora es obligatoria</mat-error>
+    </mat-error>
+  </mat-form-field>
+  <div>
+    <button type="submit" mat-raised-button color="primary" *ngIf="!editMode" [disabled]="!newEventForm.valid">Nueva partida</button>
+    <button type="submit" mat-raised-button color="primary" *ngIf="editMode" [disabled]="!newEventForm.valid">Editar partida</button>
+  </div>
+</form>
