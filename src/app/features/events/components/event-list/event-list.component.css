@@ -120,7 +120,8 @@ mat-card-title {
 
   table {
     border-collapse: collapse;
-    margin-top: 3em;
+    margin: auto;
+    margin-top: 2em;
     width: 50em;
   }
 
@@ -158,14 +159,16 @@ mat-card-title {
 
   .container-right {
     padding-bottom: 5em;
-    width: 60em;
+    width: 120em;
   }
 
   .mat-button-toggle-appearance-standard {
      color: var(--main-bg-color);
   }
 
-
+  .paginator {
+    margin-right: 3em;
+  }
 
 }
 

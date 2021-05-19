@@ -79,7 +79,9 @@
         </mat-card>
     </div>
   </div>
+  <div class="paginator">
   <mat-paginator [length]="totalEvents" [pageSize]="eventsPerPage" [pageSizeOptions]="pageSizeOptions" (page)="onChangedPage($event)" *ngIf="events.length > 0"></mat-paginator>
+  </div>
 </div>
 <div>
   <h2>Partidas destacadas</h2>
