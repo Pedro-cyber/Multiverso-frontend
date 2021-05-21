@@ -11,6 +11,8 @@ import { Chat } from '../../models/chat.model';
 import { ChatService } from '../../services/chat.service';
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
 import { take } from 'rxjs/operators';
+import { io } from 'node_modules/socket.io/client-dist/socket.io.js';
+import { environment } from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-chat',
@@ -35,7 +37,8 @@ export class ChatComponent implements OnInit, OnDestroy {
   constructor(private formBuilder: FormBuilder,
               private chatService: ChatService,
               private userService: UserService,
-              private _ngZone: NgZone) { }
+              private _ngZone: NgZone) {
+              }
 
   @ViewChild('autosize', {static: false}) autosize: CdkTextareaAutosize;
 
@@ -46,11 +49,20 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
 
+    var socket = io(environment.apiURL);
+
+    socket.on('chat message', ( (message) => {
+      if(message.operationType == 'insert'){
+      this.chatService.getMessagesChat(this.eventId);
+      }
+    }));
+
     this.chatService.getMessagesChat(this.eventId);
     this.chatsSub= this.chatService.getChatsUpdateListener()
     .subscribe((chatData: {chats: Chat[]})=> {
       this.chats = chatData.chats.reverse();
     });
+
     this.userService.getProfile(this.userId).subscribe ( userData => {
     this.username= userData.username;
     });
@@ -75,7 +87,6 @@ export class ChatComponent implements OnInit, OnDestroy {
 
     this.chatService.createMessageChat(this.chat).subscribe( (response)=> {
       this.chatForm.reset();
-      this.chatService.getMessagesChat(this.eventId);
     });
   }
 
