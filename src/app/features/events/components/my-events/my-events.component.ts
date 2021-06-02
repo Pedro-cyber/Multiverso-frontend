@@ -45,7 +45,7 @@ export class MyEventsComponent implements OnInit {
   }
 
   eventDetails (id: string){
-    this.router.navigateByUrl(`events/${id}`);
+    this.router.navigateByUrl(`events/events/${id}`);
   }
 
   cancelParticipation (id: string, players:string []){
@@ -59,7 +59,7 @@ export class MyEventsComponent implements OnInit {
   }
 
   editEvent (id: string){
-    this.router.navigateByUrl(`newevent/${id}`);
+    this.router.navigateByUrl(`events/newevent/${id}`);
   }
 
   deleteEvent (id: string){

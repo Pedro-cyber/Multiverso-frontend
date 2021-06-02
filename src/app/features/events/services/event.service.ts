@@ -20,7 +20,7 @@ export class EventService {
   createEvent(event: Event){
     return this.http.post<{message: string, eventId: string}>(BACKEND_URL, event)
     .subscribe( (response)=> {
-      this.router.navigate([`events/${response.eventId}`]);
+      this.router.navigate([`events/events/${response.eventId}`]);
     });
   }
 
@@ -65,7 +65,7 @@ export class EventService {
 
   updateEvent (event: Event) {
     return this.http.put(BACKEND_URL + event.id, event).subscribe(response => {
-      this.router.navigate(["/myevents"]);
+      this.router.navigate(["events/myevents"]);
     });
   }
 

@@ -39,7 +39,7 @@ export class UserService {
   createUser(user: User){
     return this.http.post(BACKEND_URL + '/signup', user)
     .subscribe( ()=> {
-      this.router.navigate(['login']);
+      this.router.navigate(['user','login']);
     }, error => {
       this.authStatusListener.next(false);
     })

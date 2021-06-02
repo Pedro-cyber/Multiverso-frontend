@@ -82,7 +82,7 @@ export class EventListComponent implements OnInit, OnDestroy {
   }
 
   eventDetails (id: string){
-    this.router.navigateByUrl(`events/${id}`);
+    this.router.navigateByUrl(`events/events/${id}`);
   }
 
   toggleList() {

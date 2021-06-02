@@ -17,7 +17,7 @@
       cdkTextareaAutosize
       #autosize="cdkTextareaAutosize"
       cdkAutosizeMinRows="1"
-      cdkAutosizeMaxRows="5" name="message" id="message" required [formControl]="message"></textarea>
+      cdkAutosizeMaxRows="5" name="message" id="message" placeholder="Introduce un mensaje" required [formControl]="message"></textarea>
     </mat-form-field>
     <div>
       <button type="submit" mat-raised-button color="primary"[disabled]="!chatForm.valid">Enviar</button>

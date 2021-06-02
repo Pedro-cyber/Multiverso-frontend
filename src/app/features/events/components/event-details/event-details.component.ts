@@ -82,7 +82,7 @@ export class EventDetailsComponent implements OnInit, OnDestroy {
   profile(username: string){
     const userDetail= this.playerCompleteInfo.filter(player => player.username == username);
     const id= userDetail[0]._id;
-    this.router.navigateByUrl(`profile/${id}`);
+    this.router.navigateByUrl(`user/profile/${id}`);
   }
 
   ngOnDestroy(){

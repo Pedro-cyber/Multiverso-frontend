@@ -88,6 +88,7 @@ export class SignupComponent implements OnInit {
     this.user.username = this.username.value;
     this.user.email = this.email.value;
     this.user.password = this.password.value;
+    this.user.avatar= 'https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png';
     this.isLoading= true;
     this.userService.createUser(this.user);
   }

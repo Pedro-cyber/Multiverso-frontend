@@ -10,9 +10,6 @@ import { HeaderComponent } from './core/components/header/header.component';
 import { FooterComponent } from './core/components/footer/footer.component';
 import { ErrorComponent } from './core/components/error/error.component';
 
-import { UserModule } from './features/user/user.module';
-import { EventsModule } from './features/events/events.module';
-
 import { ErrorInterceptor } from './core/interceptors/error.interceptor';
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 
@@ -33,9 +30,7 @@ import { MatIconModule } from '@angular/material/icon';
     BrowserAnimationsModule,
     HttpClientModule,
     MatDialogModule,
-    MatIconModule,
-    UserModule,
-    EventsModule
+    MatIconModule
   ],
   providers: [ {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
                 {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
