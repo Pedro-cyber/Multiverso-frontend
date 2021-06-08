@@ -51,11 +51,9 @@ export class ChatComponent implements OnInit, OnDestroy {
 
     var socket = io(environment.apiURL);
 
-    socket.removeAllListeners();
-
     socket.on('chat message', ( (message) => {
       if(message.operationType == 'insert'){
-      this.chatService.getMessagesChat(this.eventId);
+      this.chatService.getMessagesChat(message.fullDocument.event);
       }
     }));
 

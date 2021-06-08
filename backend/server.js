@@ -54,8 +54,11 @@ const io = require('socket.io')(server, options);
 io.on('connection', (socket) => {
   Chat.watch().on('change', data =>  {
       io.emit('chat message', data);
+      io.removeAllListeners();
     });
   });
+
+
 
 server.on("error", onError);
 server.on("listening", onListening);
